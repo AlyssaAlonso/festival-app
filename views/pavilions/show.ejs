@@ -1,0 +1,15 @@
+<%- include('../partials/header'); %>
+<body>
+  <h1><%= pavilion.name %></h1>
+  <p><%= pavilion.description %></p>
+  <ul>
+    <% pavilion.booths?.forEach((booth) => { %>
+    <a href="/booths/<%= booth.id %>">
+      <li><%= booth.name %></li>
+    </a>
+    <% }) %>
+  </ul>
+  <br />
+  <a href="/pavilions">Back</a>
+</body>
+<%- include('../partials/footer'); %>

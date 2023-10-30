@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Food Booths</h1>
+    <ul>
+      <% booths.forEach((booth) => { %>
+      <a href="/booths/<%= booth.id %>">
+        <li style="color: <%= booth.color %>"><%= booth.name %></li>
+      </a>
+      <% }) %>
+      <br />
+      <br />
+      <a href="/booths/new">Create New Booth</a>
+    </ul>
+    <br />
+    <a href="/">Home</a>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<%- include('../partials/header'); %>
+<body>
+  <h1><%= booth.name %></h1>
+  <ul>
+    <% booth.items?.forEach((item) => { %>
+    <li><%= item.name %> (<%= item.price %>)</li>
+    <% }) %>
+  </ul>
+  <form action="/booths/<%= booth.id %>/items" method="POST">
+    <h5>Name</h5>
+    <input type="text" name="name" />
+    <h5>Price</h5>
+    <input type="number" name="price" />
+    <h5>Description</h5>
+    <input type="text" name="description" />
+    <br />
+    <button type="submit">Add a Menu Item</button>
+  </form>
+  <br />
+  <a href="/booths">Back</a>
+</body>
+<%- include('../partials/footer'); %>

@@ -1,0 +1,16 @@
+<%- include('../partials/header'); %>
+<body>
+  <h1>Create a New Booth</h1>
+  <form action="/booths" method="POST">
+    <label>Name: </label>
+    <br />
+    <input type="text" name="name" />
+    <br />
+    <label> Description:</label>
+    <br />
+    <input type="text" name="description" />
+    <br />
+    <button type="submit">Create Booth</button>
+  </form>
+</body>
+<%- include('../partials/footer'); %>
