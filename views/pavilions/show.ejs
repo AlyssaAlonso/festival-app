@@ -1,15 +1,16 @@
 <%- include('../partials/header'); %>
 <body>
-  <h1><%= pavilion.name %></h1>
   <p><%= pavilion.description %></p>
+
+  <h2>Booths</h2>
   <ul>
-    <% pavilion.booths?.forEach((booth) => { %>
-    <a href="/booths/<%= booth.id %>">
-      <li><%= booth.name %></li>
-    </a>
-    <% }) %>
+    <% boothList.forEach(function(booth) { %>
+    <li>
+      <a href="/booths/<%= booth._id %>"><%= booth.name %></a>
+      <p><%= booth.description %></p>
+      <!-- Add any other booth details you want to display -->
+    </li>
+    <% }); %>
   </ul>
-  <br />
-  <a href="/pavilions">Back</a>
 </body>
 <%- include('../partials/footer'); %>

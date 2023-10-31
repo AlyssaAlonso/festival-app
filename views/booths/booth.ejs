@@ -1,6 +1,5 @@
 <%- include('../partials/header'); %>
 <body>
-  <h1><%= booth.name %></h1>
   <ul>
     <% booth.items?.forEach((item) => { %>
     <li><%= item.name %> (<%= item.price %>)</li>
@@ -17,6 +16,5 @@
     <button type="submit">Add a Menu Item</button>
   </form>
   <br />
-  <a href="/booths">Back</a>
 </body>
 <%- include('../partials/footer'); %>

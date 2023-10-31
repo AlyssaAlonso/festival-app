@@ -1,16 +1,17 @@
 const Pavilion = require("../models/pavilion");
-const booth = require("../models/booth");
+const Booth = require("../models/booth");
 
 async function index(req, res) {
   //get all pavilions from DB
   const pavilions = await Pavilion.find({});
   res.render("pavilions/index.ejs", {
+    title: "All Pavilions",
     pavilions,
   });
 }
 
 async function newPavilion(req, res) {
-  const booths = await booth.find({});
+  const booths = await Booth.find({});
   res.render("pavilions/new.ejs", { booths });
 }
 
@@ -27,10 +28,20 @@ async function create(req, res) {
 }
 
 async function show(req, res) {
-  const pavilion = await Pavilion.findById(req.params.id)
+  const pavilionId = req.params.id;
+
+  const pavilion = await Pavilion.findById(pavilionId)
     .populate("booths")
     .exec();
-  res.render("pavilions/show.ejs", { pavilion });
+
+  // Fetches the booths associated with the pavilion
+  const boothList = await Booth.find({ pavilion: pavilion._id }).exec();
+
+  res.render("pavilions/show.ejs", {
+    title: pavilion.name,
+    pavilion,
+    boothList,
+  });
 }
 
 module.exports = {
