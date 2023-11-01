@@ -2,36 +2,63 @@ const Pavilion = require("../models/pavilion");
 const Booth = require("../models/booth");
 const Item = require("../models/item");
 
-async function show(req, res) {
-  const item = await Item.findById(req.params.id);
-  res.render("items/show.ejs", { title: "Item Details", item });
+module.exports = {
+  index,
+  show,
+  new: newItem,
+  create,
+};
+
+async function index(req, res) {
+  const items = await Item.find({});
+  res.render("items/index", { title: "All Menu Items", items });
 }
 
-function newItem(req, res) {
-  // We'll want to be able to render an
-  // errorMsg if the create action fails
-  res.render("booths/show.ejs", { title: "Add Movie", errorMsg: "" });
+async function show(req, res) {
+  const item = await Item.findById(req.params.id);
+  res.render("items/show", { title: "Item Detail", item });
+}
+
+async function newItem(req, res) {
+  try {
+    const booths = await Booth.find({});
+    const pavilions = await Pavilion.find({});
+    res.render("items/new.ejs", {
+      title: "Create a New Menu Item",
+      booths,
+      pavilions,
+    });
+  } catch (error) {
+    res.status(500).send("An error occurred");
+  }
 }
 
 async function create(req, res) {
   try {
-    //get the booth based off the boothId
-    const booth = await booth.findById(req.params.boothId);
-    //push the item object (req.body) into the item array
-    if (!booth.items) booth.items = [];
-    booth.items.push(req.body);
-    //save the booth document
-    await booth.save();
-    //redirect back to the booth show page
-    res.redirect(`/booths/${req.params.boothId}`);
+    const { name, price, description, booth } = req.body;
+
+    // Find the selected booth by ID
+    const selectedBooth = await Booth.findById(booth);
+
+    if (!selectedBooth) {
+      return res.status(400).send("Selected booth not found");
+    }
+
+    // Get the pavilion associated with the selected booth
+    const pavilion = selectedBooth.pavilion;
+
+    // Create a new menu item and assign booth and pavilion
+    const newItem = await Item.create({
+      name,
+      price,
+      description,
+      booth: booth,
+      pavilion: pavilion,
+    });
+
+    res.redirect("/items"); // or wherever you want to redirect
   } catch (err) {
     console.log(err);
-    res.redirect(`/booths/${req.params.boothId}`);
+    res.render("items/new", { errorMsg: err.message });
   }
 }
-
-module.exports = {
-  show,
-  newItem,
-  create,
-};

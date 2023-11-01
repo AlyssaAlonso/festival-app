@@ -1,4 +1,5 @@
 const Booth = require("../models/booth");
+const Item = require("../models/item");
 
 async function index(req, res, next) {
   const booths = await Booth.find({});
@@ -6,10 +7,17 @@ async function index(req, res, next) {
 }
 
 async function show(req, res) {
-  const booth = await Booth.findById(req.params.id);
-  res.render("booths/booth.ejs", {
-    title: `${booth.name} Menu`,
-    booth: booth,
+  const boothId = req.params.id;
+
+  const booth = await Booth.findById(boothId).populate("items").exec();
+
+  // Fetches the items associated with the booth
+  const itemList = await Item.find({ booth: booth._id }).exec();
+
+  res.render("booths/show.ejs", {
+    title: `${booth.name} Booth`,
+    booth,
+    itemList,
   });
 }
 
@@ -22,7 +30,7 @@ async function create(req, res) {
 }
 
 function newBooth(req, res) {
-  res.render("booths/new.ejs");
+  res.render("booths/new.ejs", { title: "Create a New Booth" });
 }
 
 module.exports = {

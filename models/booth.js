@@ -19,6 +19,13 @@ const boothSchema = new Schema(
         require: true,
       },
     ],
+    items: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Item",
+        require: true,
+      },
+    ],
   },
   {
     timestamps: true,
