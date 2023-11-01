@@ -2,13 +2,6 @@ const Pavilion = require("../models/pavilion");
 const Booth = require("../models/booth");
 const Item = require("../models/item");
 
-module.exports = {
-  index,
-  show,
-  new: newItem,
-  create,
-};
-
 async function index(req, res) {
   const items = await Item.find({});
   res.render("items/index", { title: "All Menu Items", items });
@@ -16,7 +9,7 @@ async function index(req, res) {
 
 async function show(req, res) {
   const item = await Item.findById(req.params.id);
-  res.render("items/show", { title: "Item Detail", item });
+  res.render("items/show", { title: `${item.name}`, item });
 }
 
 async function newItem(req, res) {
@@ -38,14 +31,16 @@ async function create(req, res) {
     const { name, price, description, booth } = req.body;
 
     // Find the selected booth by ID
-    const selectedBooth = await Booth.findById(booth);
+    const selectedBooth = await Booth.findOne({ name: booth });
 
     if (!selectedBooth) {
       return res.status(400).send("Selected booth not found");
     }
 
     // Get the pavilion associated with the selected booth
-    const pavilion = selectedBooth.pavilion;
+    const pavilionId = selectedBooth.pavilion;
+
+    const pavilion = await Pavilion.findById(pavilionId);
 
     // Create a new menu item and assign booth and pavilion
     const newItem = await Item.create({
@@ -53,7 +48,7 @@ async function create(req, res) {
       price,
       description,
       booth: booth,
-      pavilion: pavilion,
+      pavilion: pavilion.name,
     });
 
     res.redirect("/items"); // or wherever you want to redirect
@@ -62,3 +57,10 @@ async function create(req, res) {
     res.render("items/new", { errorMsg: err.message });
   }
 }
+
+module.exports = {
+  index,
+  show,
+  new: newItem,
+  create,
+};

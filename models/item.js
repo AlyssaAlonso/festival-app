@@ -29,24 +29,19 @@ const itemSchema = new Schema(
     price: {
       type: Number,
       required: true,
+      match: /^\d+(?:\.\d{1,2})?$/,
     },
     description: {
       type: String,
       required: true,
     },
-    booth: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Booth",
-      },
-    ],
-    pavilion: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Pavilion",
-        require: true,
-      },
-    ],
+    booth: {
+      type: String,
+    },
+
+    pavilion: {
+      type: String,
+    },
     reviews: [reviewSchema],
   },
   {

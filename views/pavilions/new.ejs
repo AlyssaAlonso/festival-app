@@ -1,6 +1,5 @@
 <%- include('../partials/header'); %>
 <body>
-  <h1>Create New Pavilion</h1>
   <form action="/pavilions" method="POST">
     <label>Name: </label>
     <br />
@@ -10,14 +9,6 @@
     <br />
     <input type="text" name="description" />
     <br />
-    <label> Booth(s): </label>
-    <br />
-    <% booths.forEach((booth) => { %>
-    <div>
-      <input type="checkbox" id="booth" name="booths" value="<%= booth.id %>" />
-      <label for="booth"><%= booth.name %></label>
-    </div>
-    <% }) %>
     <button type="submit">Create Pavilion</button>
   </form>
 </body>

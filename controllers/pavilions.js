@@ -12,7 +12,7 @@ async function index(req, res) {
 
 async function newPavilion(req, res) {
   const booths = await Booth.find({});
-  res.render("pavilions/new.ejs", { booths });
+  res.render("pavilions/new.ejs", { title: "Create a New Pavilion", booths });
 }
 
 async function create(req, res) {
@@ -38,7 +38,7 @@ async function show(req, res) {
   const boothList = await Booth.find({ pavilion: pavilion._id }).exec();
 
   res.render("pavilions/show.ejs", {
-    title: `${pavilion.name} Pavilion`,
+    title: `${pavilion.name}`,
     pavilion,
     boothList,
   });

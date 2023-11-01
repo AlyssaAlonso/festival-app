@@ -1,3 +1,4 @@
+const Pavilion = require("../models/pavilion");
 const Booth = require("../models/booth");
 const Item = require("../models/item");
 
@@ -9,16 +10,25 @@ async function index(req, res, next) {
 async function show(req, res) {
   const boothId = req.params.id;
 
-  const booth = await Booth.findById(boothId).populate("items").exec();
+  try {
+    // Find the booth by ID
+    const booth = await Booth.findById(boothId).populate("items").exec();
 
-  // Fetches the items associated with the booth
-  const itemList = await Item.find({ booth: booth._id }).exec();
+    if (!booth) {
+      return res.status(404).send("Booth not found");
+    }
 
-  res.render("booths/show.ejs", {
-    title: `${booth.name} Booth`,
-    booth,
-    itemList,
-  });
+    // Fetch the items associated with the booth
+    const itemList = await Item.find({ booth: booth.name });
+
+    res.render("booths/show.ejs", {
+      title: `${booth.name}`,
+      booth,
+      itemList,
+    });
+  } catch (error) {
+    res.status(500).send("An error occurred");
+  }
 }
 
 async function create(req, res) {
@@ -29,8 +39,9 @@ async function create(req, res) {
   res.redirect("/booths");
 }
 
-function newBooth(req, res) {
-  res.render("booths/new.ejs", { title: "Create a New Booth" });
+async function newBooth(req, res) {
+  const pavilions = await Pavilion.find({});
+  res.render("booths/new.ejs", { title: "Create a New Booth", pavilions });
 }
 
 module.exports = {

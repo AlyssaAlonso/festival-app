@@ -9,6 +9,12 @@
     <br />
     <input type="text" name="description" />
     <br />
+    <label>Pavilion:</label>
+    <select name="pavilion">
+      <% pavilions.forEach(pavilion => { %>
+      <option value="<%= pavilion._id %>"><%= pavilion.name %></option>
+      <% }); %></select
+    ><br />
     <button type="submit">Create Booth</button>
   </form>
 </body>
