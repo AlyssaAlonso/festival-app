@@ -1,15 +1,11 @@
 const express = require("express");
 const router = express.Router();
-// You'll be creating this controller module next
 const itemsCtrl = require("../controllers/items");
+const ensureLoggedIn = require("../config/ensureLoggedIn");
 
-// GET /items
 router.get("/", itemsCtrl.index);
-// GET /items/new
-router.get("/new", itemsCtrl.new);
-// GET /items/:id (show functionality) MUST be below new route
+router.get("/new", ensureLoggedIn, itemsCtrl.new);
 router.get("/:id", itemsCtrl.show);
-// POST /items
-router.post("/", itemsCtrl.create);
+router.post("/", ensureLoggedIn, itemsCtrl.create);
 
 module.exports = router;

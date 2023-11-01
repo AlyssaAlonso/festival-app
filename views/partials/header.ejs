@@ -15,7 +15,12 @@
     <a href="/pavilions" <%- title === 'All Pavilions' ? 'class="active"' : '' %>>ALL PAVILIONS</a>
     <a href="/booths" <%- title === 'All Booths' ? 'class="active"' : '' %>>ALL BOOTHS</a>
     <a href="/items" <%- title === 'All Menu Items' ? 'class="active"' : '' %>>ALL MENU ITEMS</a>
-    <a href="/items/new" <%- title === 'Add Menu Item' ? 'class="active"' : '' %>>ADD MENU ITEM</a>
+    <% if (user) { %>
+      <a href="/items/new" <%- title === 'Add Menu Item' ? 'class="active"' : '' %>>ADD MENU ITEM</a>
+      <a href="/logout">LOG OUT</a>
+    <% } else { %>
+      <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+    <% } %>
   </nav>
   <main>
     <h1><%= title %></h1>

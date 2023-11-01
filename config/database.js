@@ -1,12 +1,10 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose');
 
-mongoose.connect(process.env.DATABASE_URL)
-    .then((db) => console.log(`Connected to database --> ${db.connection.host} / ${db.connection.name} / ${db.connection.port}`))
-
-// mongoose.connect(process.env.DATABASE_URL);
-
-// const db = mognoose.connection;
-
-// db.on('connected', function(){
-//     console.log("connected")
-// })
+mongoose.connect(process.env.DATABASE_URL);
+	
+// shortcut to mongoose.connection object
+const db = mongoose.connection;
+	
+db.on('connected', function() {
+  console.log(`Connected to MongoDB ${db.name} at ${db.host}:${db.port}`);
+});

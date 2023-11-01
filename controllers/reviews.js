@@ -1,4 +1,3 @@
-const Booth = require("../models/booth");
 const Item = require("../models/item");
 
 async function deleteReview(req, res) {
@@ -8,16 +7,17 @@ async function deleteReview(req, res) {
     "reviews.user": req.user._id,
   });
   // Rogue user!
-  if (!item) return res.redirect(`/booths/${req.params.boothId}`);
+  if (!item) return res.redirect("/items");
   // Remove the review using the remove method available on Mongoose arrays
   item.reviews.remove(req.params.id);
   // Save the updated item doc
   await item.save();
   // Redirect back to the item's show view
-  res.redirect(`/booths/${req.params.boothId}/${item._id}`);
+  res.redirect(`/items/${item._id}`);
 }
 
 async function create(req, res) {
+  console.log("Alyssa test: ", req.params.id);
   const item = await Item.findById(req.params.id);
 
   // Add the user-centric info to req.body (the new review)
@@ -33,7 +33,7 @@ async function create(req, res) {
   } catch (err) {
     console.log(err);
   }
-  res.redirect(`/booths/${req.params.boothId}/${item._id}`);
+  res.redirect(`/items/${item._id}`);
 }
 
 module.exports = {
