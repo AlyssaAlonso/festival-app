@@ -6,8 +6,9 @@
   <ul>
     <% boothList.forEach(function(booth) { %>
     <li>
-      <a href="/booths/<%= booth._id %>"><%= booth.name %></a>
+      <h3><%= booth.name %></h3>
       <p><%= booth.description %></p>
+      <a href="/booths/<%= booth._id %>">Menu</a>
       <!-- Add any other booth details you want to display -->
     </li>
     <% }); %>

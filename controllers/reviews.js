@@ -1,11 +1,30 @@
+const Booth = require("../models/booth");
 const Item = require("../models/item");
 
-module.exports = {
-  create,
-};
+async function deleteReview(req, res) {
+  // Note the cool "dot" syntax to query on the property of a subdoc
+  const item = await Item.findOne({
+    "reviews._id": req.params.id,
+    "reviews.user": req.user._id,
+  });
+  // Rogue user!
+  if (!item) return res.redirect(`/booths/${req.params.boothId}`);
+  // Remove the review using the remove method available on Mongoose arrays
+  item.reviews.remove(req.params.id);
+  // Save the updated item doc
+  await item.save();
+  // Redirect back to the item's show view
+  res.redirect(`/booths/${req.params.boothId}/${item._id}`);
+}
 
 async function create(req, res) {
   const item = await Item.findById(req.params.id);
+
+  // Add the user-centric info to req.body (the new review)
+  req.body.user = req.user._id;
+  req.body.userName = req.user.name;
+  req.body.userAvatar = req.user.avatar;
+
   // We can push (or unshift) subdocs into Mongoose arrays
   item.reviews.push(req.body);
   try {
@@ -14,6 +33,10 @@ async function create(req, res) {
   } catch (err) {
     console.log(err);
   }
-  // Step 5:  Respond to the Request (redirect if data has been changed)
-  res.redirect(`/items/${item._id}`);
+  res.redirect(`/booths/${req.params.boothId}/${item._id}`);
 }
+
+module.exports = {
+  create,
+  delete: deleteReview,
+};

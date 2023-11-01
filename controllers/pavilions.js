@@ -38,7 +38,7 @@ async function show(req, res) {
   const boothList = await Booth.find({ pavilion: pavilion._id }).exec();
 
   res.render("pavilions/show.ejs", {
-    title: pavilion.name,
+    title: `${pavilion.name} Pavilion`,
     pavilion,
     boothList,
   });

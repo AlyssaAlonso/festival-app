@@ -7,7 +7,10 @@ async function index(req, res, next) {
 
 async function show(req, res) {
   const booth = await Booth.findById(req.params.id);
-  res.render("booths/booth.ejs", { title: `${booth.name}`, booth: booth });
+  res.render("booths/booth.ejs", {
+    title: `${booth.name} Menu`,
+    booth: booth,
+  });
 }
 
 async function create(req, res) {
