@@ -1,31 +1,36 @@
 <%- include('../partials/header'); %>
 <body>
   <p><%= booth.description %></p>
-
-  <h2>Menu:</h2>
-  <table id="list">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <!-- <th>Booth</th> -->
-        <!-- <th>Pavilion</th> -->
-        <th>Description</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% itemList.forEach(function(item) { %>
-      <tr>
-        <td><%= item.name %></td>
-        <td>$<%= item.price.toFixed(2) %></td>
-        <!-- <td><%= item.booth %></td> -->
-        <!-- <td><%= item.pavilion %></td> -->
-        <td><%= item.description %></td>
-        <td><a href="/items/<%= item._id %>">DETAILS</a></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
+  <br />
+  <div class="cards-container">
+    <div class="menu-card">
+      <table id="list">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Pavilion</th>
+            <!-- <th>Booth</th> -->
+            <!-- <th>Pavilion</th> -->
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% itemList.forEach(function(item) { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td>$<%= item.price.toFixed(2) %></td>
+            <td><%= item.pavilion %></td>
+            <!-- <td><%= item.booth %></td> -->
+            <!-- <td><%= item.pavilion %></td> -->
+            <td><%= item.description %></td>
+            <td><a href="/items/<%= item._id %>">Reviews</a></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </body>
 <%- include('../partials/footer'); %>

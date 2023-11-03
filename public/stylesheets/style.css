@@ -84,30 +84,25 @@ nav > a.active {
 }
 
 table {
-  border-collapse: collapse;
-  width: 90%;
-  background-color: #f1f6f9;
+  border-collapse: separate;
+  border-spacing: 40px;
+  /* border: solid 2px red; */
 }
 
 table thead th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  padding-top: 12px;
-  padding-bottom: 12px;
   text-align: left;
-  background-color: #3477b6;
-  color: white;
+  font-size: 25px;
 }
 
-table td {
+/* table td {
   border: 1px solid #ddd;
   padding: 18px;
-}
+} */
 
-#list td:nth-child(2),
+/* #list td:nth-child(2),
 #list td:nth-child(3) {
   min-width: 100px;
-}
+}  */
 
 a {
   border-radius: 4px;
@@ -211,7 +206,7 @@ hr {
   width: 300px;
   box-shadow: 0px 0px 10px 2px #d0d7de;
   border-radius: 20px;
-  margin-bottom: 35px;
+  margin: 0 0.5vw 35px;
 }
 
 .card-image {
@@ -229,4 +224,21 @@ hr {
   height: 250px;
   justify-content: space-between;
   padding: 20px;
+}
+
+.menu-card {
+  height: auto;
+  width: 100%;
+  box-shadow: 0px 0px 10px 2px #d0d7de;
+  border-radius: 20px;
+  margin-bottom: 35px;
+}
+
+.menu-item-card {
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 1fr 1fr 3fr 0.5fr;
+  column-gap: 50px;
+  height: auto;
+  width: 100%;
+  padding: 0 20px;
 }
