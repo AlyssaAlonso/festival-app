@@ -1,15 +1,27 @@
 <%- include('../partials/header'); %>
 <body>
-  <ul>
-    <% pavilions.forEach((pavilion) => { %>
-    <a href="/pavilions/<%= pavilion.id %>">
-      <li><%= pavilion.name %></li>
-    </a>
+  <a href="/pavilions/new">
+    <h3>Add a Pavilion</h3>
+  </a>
+
+  <div class="cards-container">
+    <% pavilions.forEach((pavilion, index) => { %>
+    <div class="card">
+      <div
+        class="card-image"
+        style="
+          background-image: url('https://source.unsplash.com/collection/2533969/1600x900?sig=<%= Date.now() + index %>');
+        "
+      ></div>
+      <div class="card-text">
+        <div>
+          <h2><%= pavilion.name %></h2>
+          <p><%= pavilion.description %></p>
+        </div>
+        <a href="/pavilions/<%= pavilion.id %>">View Booths</a>
+      </div>
+    </div>
     <% }) %>
-    <br />
-    <br />
-    <!-- <a href="/pavilions/new">Create New Pavilion</a> -->
-  </ul>
-  <br />
+  </div>
 </body>
 <%- include('../partials/footer'); %>

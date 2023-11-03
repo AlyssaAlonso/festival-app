@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
 <section id="show-page">
-  <div>Price: $<%= item.price %></div>
+  <div>Price: $<%= item.price.toFixed(2) %></div>
   <div>Booth: <%= item.booth %></div>
   <div>Pavilion: <%= item.pavilion %></div>
   <div>Description: <%= item.description %></div>

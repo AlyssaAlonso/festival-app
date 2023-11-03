@@ -3,15 +3,12 @@
   <p><%= pavilion.description %></p>
 
   <h2>Booths</h2>
-  <ul>
-    <% boothList.forEach(function(booth) { %>
-    <li>
-      <h3><%= booth.name %></h3>
-      <p><%= booth.description %></p>
-      <a href="/booths/<%= booth._id %>">Menu</a>
-      <!-- Add any other booth details you want to display -->
-    </li>
-    <% }); %>
-  </ul>
+  <% boothList.forEach(function(booth) { %>
+  <div class="card">
+    <h3><%= booth.name %></h3>
+    <p><%= booth.description %></p>
+    <a href="/booths/<%= booth._id %>">View Menu</a>
+  </div>
+  <% }); %>
 </body>
 <%- include('../partials/footer'); %>

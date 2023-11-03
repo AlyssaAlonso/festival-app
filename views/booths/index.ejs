@@ -1,15 +1,29 @@
 <%- include('../partials/header'); %>
 <body>
-  <ul>
-    <% booths.forEach((booth) => { %>
-    <a href="/booths/<%= booth.id %>">
-      <li><%= booth.name %> Menu</li>
-    </a>
+  <a href="/booths/new">
+    <h3>Add a Booth</h3>
+  </a>
+  <br />
+
+  <div class="cards-container">
+    <% booths.forEach((booth, index) => { %>
+    <div class="card">
+      <div
+        class="card-image"
+        style="
+          background-image: url('https://source.unsplash.com/collection/2533969/1600x900?sig=<%= Date.now() + index %>');
+        "
+      ></div>
+      <div class="card-text">
+        <div>
+          <h2><%= booth.name %></h2>
+          <p><%= booth.description %></p>
+        </div>
+        <a href="/booths/<%= booth.id %>">View Menu</a>
+      </div>
+    </div>
     <% }) %>
-    <br />
-    <br />
-    <!-- <a href="/booths/new">Create New Booth</a> -->
-  </ul>
+  </div>
   <br />
 </body>
 <%- include('../partials/footer'); %>

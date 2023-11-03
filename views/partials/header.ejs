@@ -11,15 +11,15 @@
   <nav>
     <!-- <a href="/performers/new"	<%- title === 'Add Performer' ? 'class="active"' : '' %>>
 		ADD PERFORMER</a> -->
-    <a href="/">HOME</a>
-    <a href="/pavilions" <%- title === 'All Pavilions' ? 'class="active"' : '' %>>ALL PAVILIONS</a>
-    <a href="/booths" <%- title === 'All Booths' ? 'class="active"' : '' %>>ALL BOOTHS</a>
-    <a href="/items" <%- title === 'All Menu Items' ? 'class="active"' : '' %>>ALL MENU ITEMS</a>
+    <a href="/" <%- title === 'Food & Wine Festival' ? 'class="active"' : '' %>>Home</a>
+    <a href="/pavilions" <%- title === 'All Pavilions' ? 'class="active"' : '' %>>Pavilions</a>
+    <a href="/booths" <%- title === 'All Booths' ? 'class="active"' : '' %>>Booths</a>
+    <a href="/items" <%- title === 'All Menu Items' ? 'class="active"' : '' %>>All Menu Items</a>
     <% if (user) { %>
-      <a href="/items/new" <%- title === 'Add Menu Item' ? 'class="active"' : '' %>>ADD MENU ITEM</a>
-      <a href="/logout">LOG OUT</a>
+      <a href="/items/new" <%- title === 'Add Menu Item' ? 'class="active"' : '' %>>Add Menu Item</a>
+      <a href="/logout">Sign Out</a>
     <% } else { %>
-      <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+      <a href="/auth/google" class="login">Sign In or Create Account&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
     <% } %>
   </nav>
   <main>

@@ -17,7 +17,6 @@ async function deleteReview(req, res) {
 }
 
 async function create(req, res) {
-  console.log("Alyssa test: ", req.params.id);
   const item = await Item.findById(req.params.id);
 
   // Add the user-centric info to req.body (the new review)
