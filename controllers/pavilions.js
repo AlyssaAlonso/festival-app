@@ -1,5 +1,6 @@
 const Pavilion = require("../models/pavilion");
 const Booth = require("../models/booth");
+const Item = require("../models/item");
 
 async function index(req, res) {
   //get all pavilions from DB
@@ -36,11 +37,31 @@ async function show(req, res) {
 
   // Fetches the booths associated with the pavilion
   const boothList = await Booth.find({ pavilion: pavilion._id }).exec();
+  pavilion.booths = boothList;
 
   res.render("pavilions/show.ejs", {
     title: `${pavilion.name}`,
     pavilion,
-    boothList,
+  });
+}
+
+async function showMenus(req, res) {
+  const pavilionId = req.params.id;
+
+  const pavilion = await Pavilion.findById(pavilionId)
+    .populate("booths")
+    .exec();
+
+  // Fetches the booths associated with the pavilion
+  const boothList = await Booth.find({ pavilion: pavilion._id }).exec();
+  pavilion.booths = boothList;
+
+  const itemList = await Item.find({ pavilion: pavilion.name });
+  pavilion.items = itemList;
+
+  res.render("pavilions/showMenus.ejs", {
+    title: `${pavilion.name}`,
+    pavilion,
   });
 }
 
@@ -49,4 +70,5 @@ module.exports = {
   new: newPavilion,
   create,
   show,
+  showMenus,
 };

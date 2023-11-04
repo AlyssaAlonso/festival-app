@@ -19,7 +19,10 @@
           <h2><%= pavilion.name %></h2>
           <p><%= pavilion.description %></p>
         </div>
-        <a href="/pavilions/<%= pavilion.id %>">View Booths</a>
+        <div class="card-links">
+          <a href="/pavilions/<%= pavilion.id %>">View Booths</a>&nbsp|&nbsp
+          <a href="/pavilions/<%= pavilion.id %>/menus">View Menus</a>
+        </div>
       </div>
     </div>
     <% }) %>

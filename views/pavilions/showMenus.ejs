@@ -1,12 +1,13 @@
 <%- include('../partials/header'); %>
 <body>
-  <a href="/pavilions/<%= booth.pavilion %>"
-    ><%= booth.items[0].pavilion %> Pavilion</a
-  >
-  <p><%= booth.description %></p>
+  <p><%= pavilion.description %></p>
   <br />
   <div class="cards-container">
+    <% pavilion.booths.forEach((booth, index) => { %>
     <div class="menu-card">
+      <h2><%= booth.name %> Booth</h2>
+      <p><%= booth.description %></p>
+
       <table id="list">
         <thead>
           <tr>
@@ -17,17 +18,19 @@
           </tr>
         </thead>
         <tbody>
-          <% booth.items.forEach(function(item) { %>
+          <% pavilion.items.forEach(function(item) { %> <% if (item.booth ===
+          booth.name) { %>
           <tr>
             <td><%= item.name %></td>
             <td>$<%= item.price.toFixed(2) %></td>
             <td><%= item.description %></td>
             <td><a href="/items/<%= item._id %>">Reviews</a></td>
           </tr>
-          <% }); %>
+          <% } %> <% }); %>
         </tbody>
       </table>
     </div>
+    <% }) %>
   </div>
 </body>
 <%- include('../partials/footer'); %>

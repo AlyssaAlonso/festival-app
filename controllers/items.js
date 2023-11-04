@@ -30,19 +30,16 @@ async function create(req, res) {
   try {
     const { name, price, description, booth } = req.body;
 
-    // Find the selected booth by ID
     const selectedBooth = await Booth.findOne({ name: booth });
 
     if (!selectedBooth) {
       return res.status(400).send("Selected booth not found");
     }
 
-    // Get the pavilion associated with the selected booth
     const pavilionId = selectedBooth.pavilion;
 
     const pavilion = await Pavilion.findById(pavilionId);
 
-    // Create a new menu item and assign booth and pavilion
     const newItem = await Item.create({
       name,
       price,
@@ -51,7 +48,7 @@ async function create(req, res) {
       pavilion: pavilion.name,
     });
 
-    res.redirect("/items"); // or wherever you want to redirect
+    res.redirect("/items");
   } catch (err) {
     console.log(err);
     res.render("items/new", { errorMsg: err.message });

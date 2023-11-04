@@ -1,9 +1,9 @@
 <%- include('../partials/header'); %>
 <body>
   <p><%= pavilion.description %></p>
-  <h2>Booths</h2>
+  <br />
   <div class="cards-container">
-    <% boothList.forEach((booth, index) => { %>
+    <% pavilion.booths.forEach((booth, index) => { %>
     <div class="card">
       <div
         class="card-image"
