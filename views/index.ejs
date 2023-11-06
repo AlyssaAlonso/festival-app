@@ -1,5 +1,25 @@
 <%- include('./partials/header') %>
+  <div class="large-menu-card">
+    <div
+    class="homepage-card-image"
+    style="
+      background-image: url('https://source.unsplash.com/collection/2533969/1600x900?sig=<%= Date.now() + 0 %>');
+    "
+  ></div>
+    <div class="menu-item-card-text">
+      <h2>Taste Your Way Around the World</h2>
+      <p>
+        Embark on a culinary exploration across 6 continents—July 27 to November
+        18, 2023!
+      </p>
 
-<!-- <h2>Food & Wine Festival Planner</h2> -->
-
-<%- include('./partials/footer') %>
+      <h2>Browse Festival Offerings by:</h2>
+      <div class="homepage-links">
+        <a href="/pavilions">Pavilion</a>
+        <a href="/booths">Booth</a>
+        <a href="/items">Item</a>
+      </div>
+    </div>
+  </div>
+  <%- include('./partials/footer') %>
+</div>

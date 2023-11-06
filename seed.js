@@ -4,7 +4,6 @@ require("./config/database");
 const Pavilion = require("./models/pavilion");
 const Booth = require("./models/booth");
 
-// Data for pavilions
 const pavilionsData = [
   {
     name: "United Kingdom",
@@ -82,7 +81,6 @@ const pavilionsData = [
   },
 ];
 
-// Data for booths
 const boothsData = [
   {
     name: "Shimmering Sips",
@@ -254,14 +252,11 @@ const boothsData = [
   },
 ];
 
-// Helper function to find a pavilion by name
 const findPavilionByName = (name, pavilions) => {
   return pavilions.find((p) => p.name === name);
 };
 
-// Seed the database
 Promise.all([
-  // Seed pavilions
   Pavilion.insertMany(pavilionsData)
     .then((pavilions) => {
       console.log("Pavilions seeded:", pavilions);
@@ -270,7 +265,7 @@ Promise.all([
     .catch((error) => {
       console.error("Error seeding pavilions:", error);
     }),
-  // Seed booths and associate with pavilions
+
   Pavilion.find()
     .then((pavilions) => {
       const boothPromises = boothsData.map((data) => {

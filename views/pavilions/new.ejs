@@ -2,14 +2,12 @@
 <body>
   <form action="/pavilions" method="POST">
     <label>Name: </label>
-    <br />
-    <input type="text" name="name" />
+    <input type="text" name="name" required />
     <br />
     <label> Description:</label>
+    <input type="text" name="description" required />
     <br />
-    <input type="text" name="description" />
-    <br />
-    <button type="submit">Create Pavilion</button>
+    <button type="submit">Add Pavilion</button>
   </form>
 </body>
 <%- include('../partials/footer'); %>

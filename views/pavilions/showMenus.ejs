@@ -5,8 +5,16 @@
   <div class="cards-container">
     <% pavilion.booths.forEach((booth, index) => { %>
     <div class="menu-card">
-      <h2><%= booth.name %> Booth</h2>
-      <p><%= booth.description %></p>
+      <div
+        class="card-image"
+        style="
+          background-image: url('https://source.unsplash.com/collection/2533969/1600x900?sig=<%= Date.now() + index %>');
+        "
+      ></div>
+      <div class="menu-item-card-text">
+        <h2><%= booth.name %></h2>
+        <p><%= booth.description %></p>
+      </div>
 
       <table id="list">
         <thead>
@@ -18,7 +26,7 @@
           </tr>
         </thead>
         <tbody>
-          <% pavilion.items.forEach(function(item) { %> <% if (item.booth ===
+          <% pavilion.items.forEach(item => { %> <% if (item.booth ===
           booth.name) { %>
           <tr>
             <td><%= item.name %></td>

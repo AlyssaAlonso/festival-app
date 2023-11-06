@@ -9,7 +9,7 @@ async function index(req, res) {
 
 async function show(req, res) {
   const item = await Item.findById(req.params.id);
-  res.render("items/show", { title: `${item.name}`, item });
+  res.render("items/show", { title: "Reviews", item });
 }
 
 async function newItem(req, res) {
@@ -17,7 +17,7 @@ async function newItem(req, res) {
     const booths = await Booth.find({});
     const pavilions = await Pavilion.find({});
     res.render("items/new.ejs", {
-      title: "Create a New Menu Item",
+      title: "Add a Menu Item",
       booths,
       pavilions,
     });

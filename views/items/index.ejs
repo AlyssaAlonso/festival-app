@@ -1,10 +1,16 @@
 <%- include('../partials/header') %>
-<a href="/booths/new">
-  <h3>Add a Menu Item</h3>
+<a href="/items/new">
+  <h3 class="new-link">Add a Menu Item</h3>
 </a>
 <br />
 <div class="cards-container">
-  <div class="menu-card">
+  <div class="large-menu-card">
+    <div
+      class="card-image"
+      style="
+        background-image: url('https://source.unsplash.com/collection/2533969/1600x900?sig=<%= Date.now() + 0 %>');
+      "
+    ></div>
     <table id="list">
       <thead>
         <tr>
@@ -17,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <% items.forEach(function(item) { %>
+        <% items.forEach(item => { %>
         <tr>
           <td><%= item.name %></td>
           <td>$<%= item.price.toFixed(2) %></td>

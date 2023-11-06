@@ -1,70 +1,105 @@
 <%- include('../partials/header') %>
+<div class="menu-card">
+  <div
+    class="card-image"
+    style="
+      background-image: url('https://source.unsplash.com/collection/2533969/1600x900?sig=<%= Date.now() + 0 %>');
+    "
+  ></div>
 
-<section id="show-page">
-  <div>Price: $<%= item.price.toFixed(2) %></div>
-  <div>Booth: <%= item.booth %></div>
-  <div>Pavilion: <%= item.pavilion %></div>
-  <div>Description: <%= item.description %></div>
-</section>
+  <div class="menu-item-card-text">
+    <h2><%= item.name %></h2>
+  </div>
 
-<br /><br />
-<h2>Reviews</h2>
-<form
-  id="add-review-form"
-  method="POST"
-  action="/items/<%= item._id %>/reviews"
->
-  <label>Review:</label>
-  <textarea name="content"></textarea>
-  <label>Rating:</label>
-  <select name="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5" selected>5</option>
-  </select>
-  <input type="submit" value="Add Review" />
-</form>
+  <table id="list">
+    <thead>
+      <tr>
+        <th>Price</th>
+        <th>Booth</th>
+        <th>Pavilion</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>$<%= item.price.toFixed(2) %></td>
+        <td><%= item.booth %></td>
+        <td><%= item.pavilion %></td>
+        <td><%= item.description %></td>
+      </tr>
+    </tbody>
+  </table>
 
-<% if (item.reviews.length) { %>
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Review</th>
-      <th>Rating</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% let total = 0 %> <% item.reviews.forEach(function(r) { %> <% total +=
-    r.rating %>
-    <tr>
-      <td class="review-user">
-        <img
-          alt="avatar"
-          src="<%= r.userAvatar %>"
-          referrerpolicy="no-referrer"
-        /><%= r.userName %>
-      </td>
-      <td><%= r.createdAt.toLocaleDateString() %></td>
-      <td><%= r.content %></td>
-      <td><%= r.rating %></td>
-      <td>
-        <% if (user?._id.equals(r.user)) { %>
-        <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
-          <button type="submit">X</button>
-        </form>
-        <% } %>
-      </td>
-    </tr>
-    <% }); %>
-    <tr>
-      <td colspan="3"></td>
-      <td><strong><%= (total / item.reviews.length).toFixed(1) %></strong></td>
-    </tr>
-  </tbody>
-</table>
-<% } else { %>
-<h5>No Reviews Yet</h5>
-<% } %> <%- include('../partials/footer') %>
+  <% if (item.reviews.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Review</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let total = 0 %> <% item.reviews.forEach(review => { %> <% total +=
+      review.rating %>
+      <tr>
+        <td class="review-user">
+          <img
+            alt="avatar"
+            src="<%= review.userAvatar %>"
+            referrerpolicy="no-referrer"
+          /><%= review.userName %>
+        </td>
+        <td><%= review.createdAt.toLocaleDateString() %></td>
+        <td><%= review.content %></td>
+        <td><%= review.rating %></td>
+        <td>
+          <% if (user?._id.equals(review.user)) { %>
+          <form
+            action="/reviews/<%= review._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+          <% } %>
+        </td>
+      </tr>
+      <% }); %>
+      <tr>
+        <td colspan="3"></td>
+        <td>
+          <strong><%= (total / item.reviews.length).toFixed(1) %></strong>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% } else { %>
+  <h5>No Reviews Yet</h5>
+  <% } %>
+
+  <div class="card-form">
+    <form
+      id="add-review-form"
+      method="POST"
+      action="/items/<%= item._id %>/reviews"
+    >
+      <label>Rating:</label>
+      <br />
+      <select name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5" selected>5</option>
+      </select>
+      <br />
+      <label>Review:</label>
+      <br />
+      <textarea name="content"></textarea>
+      <br />
+      <input type="submit" value="Add Review" />
+    </form>
+  </div>
+</div>
+<%- include('../partials/footer') %>

@@ -1,7 +1,7 @@
 <%- include('../partials/header'); %>
 <body>
   <a href="/booths/new">
-    <h3>Add a Booth</h3>
+    <h3 class="new-link">Add a Booth</h3>
   </a>
   <br />
 
@@ -19,12 +19,14 @@
           <h2><%= booth.name %></h2>
           <p><%= booth.description %></p>
         </div>
-        <a href="/booths/<%= booth.id %>">View Menu</a>
+        <div class="card-links">
+          <a href="/booths/<%= booth.id %>">View Menu</a>
+        </div>
       </div>
     </div>
     <% }) %>
   </div>
-  
+
   <br />
 </body>
 <%- include('../partials/footer'); %>

@@ -13,17 +13,10 @@ async function index(req, res) {
 
 async function newPavilion(req, res) {
   const booths = await Booth.find({});
-  res.render("pavilions/new.ejs", { title: "Create a New Pavilion", booths });
+  res.render("pavilions/new.ejs", { title: "Add a Pavilion", booths });
 }
 
 async function create(req, res) {
-  /*
-        {
-            name: "somename",
-            booths: [f34rf34f3wsdf34, 342543fsd234sf3]
-        }
-    */
-
   await Pavilion.create(req.body);
   res.redirect("/pavilions");
 }
@@ -35,7 +28,6 @@ async function show(req, res) {
     .populate("booths")
     .exec();
 
-  // Fetches the booths associated with the pavilion
   const boothList = await Booth.find({ pavilion: pavilion._id }).exec();
   pavilion.booths = boothList;
 
@@ -52,7 +44,6 @@ async function showMenus(req, res) {
     .populate("booths")
     .exec();
 
-  // Fetches the booths associated with the pavilion
   const boothList = await Booth.find({ pavilion: pavilion._id }).exec();
   pavilion.booths = boothList;
 

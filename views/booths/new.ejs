@@ -2,20 +2,18 @@
 <body>
   <form action="/booths" method="POST">
     <label>Name: </label>
-    <br />
-    <input type="text" name="name" />
+    <input type="text" name="name" required />
     <br />
     <label> Description:</label>
-    <br />
-    <input type="text" name="description" />
+    <input type="text" name="description" required />
     <br />
     <label>Pavilion:</label>
-    <select name="pavilion">
+    <select name="pavilion" required>
       <% pavilions.forEach(pavilion => { %>
       <option value="<%= pavilion._id %>"><%= pavilion.name %></option>
       <% }); %></select
     ><br />
-    <button type="submit">Create Booth</button>
+    <button type="submit">Add Booth</button>
   </form>
 </body>
 <%- include('../partials/footer'); %>

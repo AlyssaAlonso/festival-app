@@ -16,14 +16,12 @@ const boothSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "Pavilion",
-        require: true,
       },
     ],
     items: [
       {
         type: Schema.Types.ObjectId,
         ref: "Item",
-        require: true,
       },
     ],
   },

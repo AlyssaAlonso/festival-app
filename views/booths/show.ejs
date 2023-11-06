@@ -1,12 +1,23 @@
 <%- include('../partials/header'); %>
 <body>
-  <a href="/pavilions/<%= booth.pavilion %>"
-    ><%= booth.items[0].pavilion %> Pavilion</a
-  >
+  <% if (booth.items.length) { %>
+  <h2>
+    Pavilion:
+    <a href="/pavilions/<%= booth.pavilion %>"
+      ><%= booth.items[0].pavilion %></a
+    >
+  </h2>
+  <% } %>
   <p><%= booth.description %></p>
   <br />
   <div class="cards-container">
     <div class="menu-card">
+      <div
+        class="card-image"
+        style="
+          background-image: url('https://source.unsplash.com/collection/2533969/1600x900?sig=<%= Date.now() + 0 %>');
+        "
+      ></div>
       <table id="list">
         <thead>
           <tr>
@@ -17,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <% booth.items.forEach(function(item) { %>
+          <% booth.items.forEach((item, index) => { %>
           <tr>
             <td><%= item.name %></td>
             <td>$<%= item.price.toFixed(2) %></td>

@@ -36,7 +36,7 @@ async function create(req, res) {
 
 async function newBooth(req, res) {
   const pavilions = await Pavilion.find({});
-  res.render("booths/new.ejs", { title: "Create a New Booth", pavilions });
+  res.render("booths/new.ejs", { title: "Add a Booth", pavilions });
 }
 
 module.exports = {
