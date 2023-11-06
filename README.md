@@ -24,7 +24,7 @@ A user-friendly full-stack CRUD application designed to help Food & Wine Festiva
 
 ## Getting Started
 
-Trello Board: <a href="https://trello.com/invite/b/bvtbEv0E/ATTIb475f8d839d66962d65f09d0217797a793724F04/sei-project-2-food-wine-festival-app"></a>
+[Trello Board](https://trello.com/invite/b/bvtbEv0E/ATTIb475f8d839d66962d65f09d0217797a793724F04/sei-project-2-food-wine-festival-app)
 
 ## Next Steps
 
