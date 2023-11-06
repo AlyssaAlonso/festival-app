@@ -6,10 +6,10 @@ A user-friendly full-stack CRUD application designed to help Food & Wine Festiva
 
 ## App Screenshots
 
-<img src="./public/images/app-home-page.png" width="500">
-<img src="./public/images/app-pavilions-page.png" width="500">
-<img src="./public/images/app-booths-page.png" width="500">
-<img src="./public/images/app-items-page.png" width="500">
+<img src="./public/images/app-home-page.png" width="800">
+<img src="./public/images/app-pavilions-page.png" width="800">
+<img src="./public/images/app-booths-page.png" width="800">
+<img src="./public/images/app-items-page.png" width="800">
 
 ## Technologies Used
 
