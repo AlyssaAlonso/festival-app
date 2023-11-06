@@ -71,7 +71,10 @@ form * {
   border-radius: 5px;
 }
 
-form {
+.new-pavilion,
+.new-booth,
+.new-item,
+.new-review {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: repeat(1, minmax(auto, 22rem));
@@ -151,7 +154,7 @@ a:hover {
 
 .review-user {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
 
@@ -159,6 +162,12 @@ a:hover {
   border-radius: 50%;
   height: 40px;
   margin-right: 10px;
+}
+
+.review-date,
+.review-content,
+.review-rating {
+  vertical-align: middle;
 }
 
 .cards-container {
@@ -234,8 +243,15 @@ a:hover {
   padding: 0 20px;
 }
 
-.delete-btn {
-  width: auto;
+.edit-btn {
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.delete-btn,
+.edit-btn {
+  width: 80px;
 }
 
 .card-form {
@@ -265,6 +281,15 @@ a:hover {
   margin: 0 2vw;
 }
 
+.hidden-edit-form {
+  display: none;
+}
+
+.update-review input,
+select {
+  font-size: 16px;
+}
+
 @media (max-width: 950px) {
   table {
     border-spacing: 1vw;
@@ -280,5 +305,19 @@ a:hover {
 
   .large-menu-card {
     width: 80vw;
+  }
+
+  .delete-btn,
+  .edit-btn {
+    font-size: 2vw;
+    width: 45px;
+  }
+
+  .update-review input,
+  select {
+    font-size: 2vw;
+  }
+  .update-review input {
+    width: 100px;
   }
 }
