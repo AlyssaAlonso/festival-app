@@ -251,7 +251,7 @@ a:hover {
 
 .delete-btn,
 .edit-btn {
-  width: 80px;
+  width: 8vw;
 }
 
 .card-form {
@@ -285,6 +285,11 @@ a:hover {
   display: none;
 }
 
+.update-review {
+  display: flex;
+  flex-direction: row;
+}
+
 .update-review input,
 select {
   font-size: 16px;
@@ -310,14 +315,14 @@ select {
   .delete-btn,
   .edit-btn {
     font-size: 2vw;
-    width: 45px;
   }
 
   .update-review input,
   select {
     font-size: 2vw;
   }
+
   .update-review input {
-    width: 100px;
+    width: 10vw;
   }
 }
